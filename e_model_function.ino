@@ -28,6 +28,16 @@ float angle(float theta,float TSR){
 
 void moveToPosition(int pos){
  int steps = pos-counter/2;
+
+  Serila.print("pos:");
+  Serila.println(pos);
+
+  Serila.print("counter:");
+  Serila.println(counter);
+
+  Serila.print("steps:");
+  Serila.println(steps);
+  
   if(steps==0){
    return;
    }
