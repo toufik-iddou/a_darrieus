@@ -1,8 +1,7 @@
 
 void setup(void) {
   // GPIO
-  pinMode(led, OUTPUT);
-  digitalWrite(led, LOW);
+  // pinMode(PIN_D3, OUTPUT);
   pinMode(STEP_PIN, OUTPUT);
   pinMode(DIR_PIN, OUTPUT);
   pinMode(ENABLE_PIN, OUTPUT);
@@ -35,4 +34,16 @@ void setup(void) {
 
   server.begin();
   Serial.println("HTTP server started");
+
+  	// Interval in microsecs
+// 	if (ITimer1.attachInterruptInterval(1000 * 1000, TimerHandler1))
+// 	{
+// 		Serial.print(F("Starting  ITimer1 OK, millis() = "));
+// 		Serial.println(millis());
+// 	}
+// 	else
+// 		Serial.println(F("Can't set ITimer1. Select another freq. or timer"));
+
+// 	Serial.flush();
+// }
 }

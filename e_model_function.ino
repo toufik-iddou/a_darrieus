@@ -1,3 +1,14 @@
+// bool IRAM_ATTR TimerHandler1(void * timerNo)
+// {
+// 	static bool toggle1 = false;
+
+// 	//timer interrupt toggles outputPin
+// 	digitalWrite(PIN_D3, toggle1);
+// 	toggle1 = !toggle1;
+
+// 	return true;
+// }
+
 void IRAM_ATTR onChangePosition() {
   if(digitalRead(ch1) == digitalRead(ch2) ){
     counter++;

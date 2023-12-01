@@ -1,24 +1,36 @@
 
 void handleRoot() {
   digitalWrite(led, 1);
-  server.send(200, "text/html",navigateTo(""));
+  server.send(200, "text/html", navigateTo(""));
   digitalWrite(led, 0);
 }
 
 void handleGetHome() {
   digitalWrite(led, 1);
-  server.send(200, "text/html",homePage());
+  server.send(200, "text/html", homePage());
   digitalWrite(led, 0);
 }
 
 void handlePostHome() {
   digitalWrite(led, 1);
-   writeDataToEEPROM(server.arg("V").toFloat() ,server.arg("R").toFloat(),server.arg("TSR").toFloat(),server.arg("theta").toFloat() );
-   
-  server.send(200, "text/html",navigateTo(""));
-  
+  writeDataToEEPROM(server.arg("mode").toFloat(),server.arg("V").toFloat(), server.arg("R").toFloat(), server.arg("TSR").toFloat(), server.arg("theta").toFloat());
+
+  server.send(200, "text/html", navigateTo(""));
+
   digitalWrite(led, 0);
-  moveToPosition(angleToSteps(angle(server.arg("theta").toFloat()*DEG2RAD,server.arg("TSR").toFloat()*DEG2RAD)));
+  switch (server.arg("mode").toInt()) {
+    case 0 : //alpha
+      moveToPosition(angleToSteps(server.arg("alpha").toFloat()));
+      Serial.println(angleToSteps(server.arg("alpha").toFloat()));
+      break;
+    case 1: //theta
+      moveToPosition(angleToSteps(server.arg("theta").toFloat()));
+      Serial.println(angleToSteps(server.arg("theta").toFloat()));
+      break;
+    case 2: //movement
+      Serial.println(2);
+      break;
+  }
 }
 
 void handleNotFound() {

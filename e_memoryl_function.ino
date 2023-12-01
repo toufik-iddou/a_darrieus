@@ -1,5 +1,6 @@
 
-void writeDataToEEPROM(float V,float R,float TSR,float theta) {
+void writeDataToEEPROM(char mode,float V,float R,float TSR,float theta) {
+  EEPROM.put(ADDRESS_MODE, mode);
   EEPROM.put(ADDRESS_V, V);
   EEPROM.put(ADDRESS_R, R);
   EEPROM.put(ADDRESS_TSR, TSR);
@@ -9,6 +10,7 @@ void writeDataToEEPROM(float V,float R,float TSR,float theta) {
 
 MyValues readDataFromEEPROM() {
   MyValues values;
+  EEPROM.get(ADDRESS_MODE, values.mode);
   EEPROM.get(ADDRESS_V, values.V);
   EEPROM.get(ADDRESS_R, values.R);
   EEPROM.get(ADDRESS_TSR, values.TSR);
