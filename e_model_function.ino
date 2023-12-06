@@ -11,18 +11,19 @@ void IRAM_ATTR onChangePosition() {
     }else{
       counter--;
       }
-     counter%=400; 
+     counter%=400;
 }
 float angle(float theta,float TSR){
   float alpha = atan(sin(theta)/(cos(theta)+TSR))/DEG2RAD;
   return alpha ;
   }
   
- unsigned char angleToPosition(float angle){
+ int angleToPosition(float angle){
   return (int)(angle/1.8) %200;
   }
 
-bool moveToPosition(unsigned char pos){
+bool moveToPosition(int pos){
+ 
  int steps = pos-counter/2;
   if(steps==0){
    return false;
@@ -40,6 +41,8 @@ bool moveToPosition(unsigned char pos){
     digitalWrite(STEP_PIN, LOW);
     delayMicroseconds(STEP_TIME);
     }
+     Serial.print("counter");
+  Serial.println(counter);
     return true;
   }
 void dispatch(){

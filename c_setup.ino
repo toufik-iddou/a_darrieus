@@ -37,6 +37,7 @@ void setup(void) {
   Serial.println("HTTP server started");
 // init values
   values = readDataFromEEPROM(); 
+  values.mode =0;
 
   	// Interval in microsecs
 // 	if (ITimer1.attachInterruptInterval(1000 * 1000, TimerHandler1))

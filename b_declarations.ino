@@ -36,7 +36,6 @@ bool IRAM_ATTR movementInterruption(void * timerNo);
 // bool IRAM_ATTR TimerHandler1(void * timerNo)
 //model functions
 float angle(float theta,float TSR);
-unsigned char angleToPosition(float angle);
-bool moveToPosition(unsigned char pos);
+int angleToPosition(float angle);
+bool moveToPosition(int pos);
 void dispatch();
-

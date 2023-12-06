@@ -31,9 +31,9 @@ void handlePostHome() {
       moveToPosition(angleToPosition(server.arg("theta").toFloat()));
       break;
     case 2: //movement
-      Serial.println(2);
       break;
   }
+      dispatch();
 }
 
 void handleNotFound() {
