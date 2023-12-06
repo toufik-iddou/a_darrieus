@@ -9,7 +9,6 @@ void writeDataToEEPROM(char mode,float V,float R,float TSR,float theta) {
 }
 
 MyValues readDataFromEEPROM() {
-  MyValues values;
   EEPROM.get(ADDRESS_MODE, values.mode);
   EEPROM.get(ADDRESS_V, values.V);
   EEPROM.get(ADDRESS_R, values.R);

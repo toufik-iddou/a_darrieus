@@ -1,5 +1,4 @@
 String homePage(){
-  MyValues values = readDataFromEEPROM();
  return "<!DOCTYPE html> \
         <html lang='en'> \
         <head> \

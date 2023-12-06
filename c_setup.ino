@@ -1,7 +1,7 @@
 
 void setup(void) {
   // GPIO
-  // pinMode(PIN_D3, OUTPUT);
+  pinMode(0, OUTPUT);
   pinMode(STEP_PIN, OUTPUT);
   pinMode(DIR_PIN, OUTPUT);
   pinMode(ENABLE_PIN, OUTPUT);
@@ -12,6 +12,7 @@ void setup(void) {
   Serial.begin(9600);
   //interruption
   attachInterrupt(digitalPinToInterrupt(ch1), onChangePosition, CHANGE);
+  ITimer1.attachInterruptInterval(TIMER1_INTERVAL_MS * 1000, movementInterruption);
   //init EEPROM size
   EEPROM.begin(MEMORY_SIZE);
   // wifi connection
@@ -34,6 +35,8 @@ void setup(void) {
 
   server.begin();
   Serial.println("HTTP server started");
+// init values
+  values = readDataFromEEPROM(); 
 
   	// Interval in microsecs
 // 	if (ITimer1.attachInterruptInterval(1000 * 1000, TimerHandler1))

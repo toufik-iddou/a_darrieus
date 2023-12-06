@@ -1,13 +1,9 @@
-// bool IRAM_ATTR TimerHandler1(void * timerNo)
-// {
-// 	static bool toggle1 = false;
+bool IRAM_ATTR movementInterruption(void * timerNo)
+{
 
-// 	//timer interrupt toggles outputPin
-// 	digitalWrite(PIN_D3, toggle1);
-// 	toggle1 = !toggle1;
+	return true;
+}
 
-// 	return true;
-// }
 
 void IRAM_ATTR onChangePosition() {
   if(digitalRead(ch1) == digitalRead(ch2) ){
@@ -22,26 +18,15 @@ float angle(float theta,float TSR){
   return alpha ;
   }
   
- int angleToSteps(float angle){
-  return (int)(angle/1.8);
+ unsigned char angleToPosition(float angle){
+  return (int)(angle/1.8) %200;
   }
 
-void moveToPosition(int pos){
+bool moveToPosition(unsigned char pos){
  int steps = pos-counter/2;
-
-  Serila.print("pos:");
-  Serila.println(pos);
-
-  Serila.print("counter:");
-  Serila.println(counter);
-
-  Serila.print("steps:");
-  Serila.println(steps);
-  
   if(steps==0){
-   return;
+   return false;
    }
-  float microTimeStep = timeStep*500000;
   if(steps>0){
     digitalWrite(DIR_PIN,HIGH);
     }
@@ -51,8 +36,12 @@ void moveToPosition(int pos){
     }
   for(int i =0;i<steps;i++){
     digitalWrite(STEP_PIN, HIGH);
-    delayMicroseconds(microTimeStep);
+    delayMicroseconds(STEP_TIME);
     digitalWrite(STEP_PIN, LOW);
-    delayMicroseconds(microTimeStep);
+    delayMicroseconds(STEP_TIME);
     }
+    return true;
   }
+void dispatch(){
+  W = values.TSR*values.V/values.R;
+}

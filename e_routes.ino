@@ -13,19 +13,22 @@ void handleGetHome() {
 
 void handlePostHome() {
   digitalWrite(led, 1);
-  writeDataToEEPROM(server.arg("mode").toFloat(),server.arg("V").toFloat(), server.arg("R").toFloat(), server.arg("TSR").toFloat(), server.arg("theta").toFloat());
-
+  values.mode = server.arg("mode").toFloat();
+  values.V = server.arg("V").toFloat();
+  values.R = server.arg("R").toFloat();
+  values.TSR = server.arg("TSR").toFloat();
+  values.theta = server.arg("theta").toFloat();
+  writeDataToEEPROM(values.mode, values.V, values.R, values.TSR, values.theta);
+  
   server.send(200, "text/html", navigateTo(""));
 
   digitalWrite(led, 0);
   switch (server.arg("mode").toInt()) {
     case 0 : //alpha
-      moveToPosition(angleToSteps(server.arg("alpha").toFloat()));
-      Serial.println(angleToSteps(server.arg("alpha").toFloat()));
+      moveToPosition(angleToPosition(server.arg("alpha").toFloat()));
       break;
     case 1: //theta
-      moveToPosition(angleToSteps(server.arg("theta").toFloat()));
-      Serial.println(angleToSteps(server.arg("theta").toFloat()));
+      moveToPosition(angleToPosition(server.arg("theta").toFloat()));
       break;
     case 2: //movement
       Serial.println(2);

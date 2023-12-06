@@ -24,9 +24,12 @@
 #define ch2 2
 #define Stepdevider 1
 // #define PIN_D3 13
-
+#define TIMER1_INTERVAL_MS        2000
+#define STEP_TIME 520
 
 #define MEMORY_SIZE (4*sizeof(float)+sizeof(char))
+
+#define PI 3.1416
 
 #define ADDRESS_MODE 0
 #define ADDRESS_V (ADDRESS_MODE + sizeof(char) )
