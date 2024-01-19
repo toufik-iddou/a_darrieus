@@ -13,6 +13,12 @@ void setup(void) {
   //interruption
   attachInterrupt(digitalPinToInterrupt(ch1), onChangePosition, CHANGE);
   ITimer1.attachInterruptInterval(TIMER1_INTERVAL_MS * 1000, movementInterruption);
+  //stepper
+  stepper.setMaxSpeed(5000.0);
+  stepper.setAcceleration(2500.0);
+   // Initialize PID
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetOutputLimits(-200, 200);  // Adjust based on your motor and driver
   //init EEPROM size
   EEPROM.begin(MEMORY_SIZE);
   // wifi connection

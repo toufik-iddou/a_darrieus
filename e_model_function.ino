@@ -48,3 +48,16 @@ bool moveToPosition(int pos){
 void dispatch(){
   W = values.TSR*values.V/values.R;
 }
+
+void moveStepper(double output) {
+  // Move the stepper motor based on the PID output
+  stepper.move(output);
+
+  // Enable the motor and run to the target position
+  while (stepper.distanceToGo() != 0) {
+    stepper.run();
+  }
+
+  // Disable the motor when not in use
+  stepper.disableOutputs();
+}

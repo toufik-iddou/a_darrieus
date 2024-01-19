@@ -39,3 +39,19 @@ float angle(float theta,float TSR);
 int angleToPosition(float angle);
 bool moveToPosition(int pos);
 void dispatch();
+//stepper
+// Create a stepper motor object
+AccelStepper stepper(1, STEP_PIN, DIR_PIN);
+
+// PID constants (adjust as needed)
+double kp = 1.0;  // Proportional gain
+double ki = 0.0;  // Integral gain
+double kd = 0.01;  // Derivative gain
+
+// Variables for PID control
+double sensorInput = 0.0;
+double setpoint = 0.0;
+double output = 0.0;
+
+// Create PID objects
+PID myPID(&sensorInput, &output, &setpoint, kp, ki, kd, DIRECT);

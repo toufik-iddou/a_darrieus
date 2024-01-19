@@ -11,6 +11,8 @@
 #include <ArduinoJson.h>
 #include <CustomJWT.h>
 #include "ESP32TimerInterrupt.h"
+#include <AccelStepper.h>
+#include <PID_v1.h>  // Include the PID library
 
 
 // Define constants
